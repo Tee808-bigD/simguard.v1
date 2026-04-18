@@ -22,13 +22,13 @@ docker compose up --build
 
 This starts:
 - Backend API on `http://localhost:8000`
-- Frontend on `http://localhost`
+- Frontend on `http://localhost:5173/`
 
 ### 3. Access the app
 
 Open your browser to:
 
-- Frontend: `http://localhost`
+- Frontend: `http://localhost:5173/`
 - Backend API docs: `http://localhost:8000/docs`
 
 ## Manual Local Run
