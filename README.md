@@ -56,6 +56,47 @@ npm run dev -- --host
 
 Then open the frontend URL shown by Vite (usually `http://localhost:5173`).
 
+## Deployment
+
+The application can be deployed with Docker Compose or any container platform that supports separate backend and frontend services.
+
+- Build and run locally with `docker compose up --build`
+- Host the backend on any platform that supports FastAPI/Uvicorn and a SQLite or compatible database
+- Host the frontend as a static site behind Nginx or another web server, pointing the API base URL to the backend
+
+### GitHub Actions (optional)
+
+A simple CI workflow can install dependencies and validate the project files before deployment.
+
+```yaml
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install backend dependencies
+        run: |
+          cd backend
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+      - name: Check frontend install
+        run: |
+          cd frontend
+          npm install
+```
+
 ## Notes
 
 - Keep the real `.env` file private.
